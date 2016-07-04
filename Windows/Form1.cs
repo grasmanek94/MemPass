@@ -14,7 +14,6 @@ namespace MemPass
     public partial class Form1 : Form
     {
         bool closing;
-        NotifyIcon notifyIcon;
 
         public static byte[] Combine(byte[] first, byte[] second, byte[] third)
         {
@@ -34,16 +33,6 @@ namespace MemPass
         {
             InitializeComponent();
             closing = false;
-            notifyIcon = new NotifyIcon();
-            notifyIcon.BalloonTipTitle = "MemPass";
-            notifyIcon.Icon = this.Icon;
-            notifyIcon.DoubleClick += NotifyIcon_DoubleClick;
-        }
-
-        private void NotifyIcon_DoubleClick(object sender, EventArgs e)
-        {
-            notifyIcon.Visible = false;
-            this.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -182,7 +171,7 @@ namespace MemPass
             sequenceEdit.Value = 0;
             loginEdit.Text = "";
 
-            notifyIcon.Visible = true;
+            Program.notifyIcon.Visible = true;
             Hide();
         }
 
@@ -199,11 +188,20 @@ namespace MemPass
         {
             closing = true;
             this.Close();
+            Application.Exit();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ToTray();
+
+        }
+
+        private void masterPasswordRepeatEdit_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button1_Click(this, new EventArgs());
+            }
         }
     }
 }

@@ -192,6 +192,7 @@
             this.masterPasswordRepeatEdit.PasswordChar = '•';
             this.masterPasswordRepeatEdit.Size = new System.Drawing.Size(270, 20);
             this.masterPasswordRepeatEdit.TabIndex = 6;
+            this.masterPasswordRepeatEdit.KeyDown += new System.Windows.Forms.KeyEventHandler(this.masterPasswordRepeatEdit_KeyDown);
             // 
             // optionsText
             // 
