@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <!-- Name -->
+            <TextView
+                android:text=" Name / Website"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameText" />
+            <EditText
+                android:inputType="text"
+                android:maxLines="1"
+                android:imeOptions="actionNext"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/nameEdit" />
+        <!-- Login -->
+            <TextView
+                android:text=" Login"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/loginText" />
+            <EditText
+                android:inputType="text"
+                android:maxLines="1"
+                android:imeOptions="actionNext"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/loginEdit" />
+        <!-- Amount Password Resets -->
+            <TextView
+                android:text=" Sequence Number (eg when resetting password do +1)"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sequenceText" />
+            <EditText
+                android:selectAllOnFocus="true"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sequenceEdit"
+                android:text="0" />
+        <!-- Max Password Length -->
+            <TextView
+                android:text=" Maximum Password Length"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lengthText" />
+            <EditText
+                android:selectAllOnFocus="true"
+                android:imeOptions="actionNext"
+                android:inputType="number"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/lengthEdit"
+                android:text="31" />
+        <!-- Master Password -->
+            <TextView
+                android:text=" Your Master Password"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/masterPasswordText" />
+            <EditText
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/masterPasswordEdit" />
+            <TextView
+                android:text=" Your Master Password (repeat)"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/masterPasswordText" />
+            <EditText
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/masterPasswordRepeatEdit" />
+        <!-- Options -->
+            <TextView
+                android:text=" Additional Options"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/optionsText" />
+        <!-- Generate -->
+            <GridLayout
+                android:minWidth="25px"
+                android:minHeight="25px"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/gridLayout1">
+                <Switch
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/lowercaseSelect"
+                    android:text=" a-z"
+                    android:checked="true" />
+                <Switch
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/uppercaseSelect"
+                    android:text=" A-Z"
+                    android:checked="true" />
+                <Switch
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/numberSelect"
+                    android:text=" 0-9"
+                    android:checked="true" />
+                <Switch
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/specialSelect"
+                    android:text=" Special"
+                    android:checked="true" />
+                <Switch
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:id="@+id/spaceSelect"
+                    android:text=" Space"
+                    android:checked="false" />
+            </GridLayout>
+            <Button
+                android:id="@+id/generateButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="GENERATE" />
+        <!-- Generated Password -->
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
