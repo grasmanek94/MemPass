@@ -168,25 +168,30 @@ namespace MemPass
             ShowAlert("Generated", "Your password is now in the clipboard");
         }
 
+        private void ToTray()
+        {
+            masterPasswordEdit.Text = "";
+            masterPasswordRepeatEdit.Text = "";
+            lengthEdit.Value = 31;
+            lowercaseSelect.Checked = true;
+            uppercaseSelect.Checked = true;
+            numberSelect.Checked = true;
+            specialSelect.Checked = true;
+            spaceSelect.Checked = false;
+            nameEdit.Text = "";
+            sequenceEdit.Value = 0;
+            loginEdit.Text = "";
+
+            notifyIcon.Visible = true;
+            Hide();
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (closing == false)
             {
-                masterPasswordEdit.Text = "";
-                masterPasswordRepeatEdit.Text = "";
-                lengthEdit.Value = 31;
-                lowercaseSelect.Checked = true;
-                uppercaseSelect.Checked = true;
-                numberSelect.Checked = true;
-                specialSelect.Checked = true;
-                spaceSelect.Checked = false;
-                nameEdit.Text = "";
-                sequenceEdit.Value = 0;
-                loginEdit.Text = "";
-
-                notifyIcon.Visible = true;
                 e.Cancel = true;
-                Hide();
+                ToTray();
             }
         }
 
@@ -194,6 +199,11 @@ namespace MemPass
         {
             closing = true;
             this.Close();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ToTray();
         }
     }
 }
