@@ -1,44 +1,83 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>MemPass</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/grids-responsive-old-ie-min.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/grids-responsive-min.css">
+    <!--<![endif]-->
 </head>
-
+<style>
+    body {
+        background-color: #1f1f1f;
+        color: #cbfffa;
+        width: 100%;
+    }
+    .center {
+        margin: auto;
+        width: 50%;
+        padding: 10px;
+    }
+</style>
 <body>
-    <form>
-        Name / Website<br/>
-        <input type="text" id="name" name="name"><br/>
-        Login<br/>
-        <input type="text" id="login" name="login"><br/>
-        Sequence Number (eg when resetting password do +1)<br />
-        <input type="number" id="sequence_number" name="sequence_number" value="0"><br />
-        Maximum Password Length<br />
-        <input type="number" id="password_length" name="password_length" value="31"><br />
-        Your Master Password<br />
-        <input type="password" id="password" name="password"><br />
-        Your Master Password (repeat)<br />
-        <input type="password" id="password_repeat" name="password_repeat"><br />
-        Additional Options<br />
-        <table>
-            <tr>
-                <td><input type="checkbox" id="option_lowercase" name="option_lowercase" value="1" checked> a-z</td>
-                <td><input type="checkbox" id="option_uppercase" name="option_uppercase" value="1" checked> A-Z</td>
-                <td><input type="checkbox" id="option_number" name="option_number" value="1" checked> 0-9</td>
-            </tr>
-            <tr>
-                <td><input type="checkbox" id="option_special" name="option_special" value="1" checked> Special</td>
-                <td><input type="checkbox" id="option_space" name="option_space" value="1"> Space</td>
-                <td></td>
-            </tr>
-        </table>
-    </form> 
-    <button id="GENERATE" value="GENERATE" onclick="perform_generation()">GENERATE</button><br />
-    Output Password<br />
-    <input type="text" id="output_password" name="output_password">
+    <div class="center pure-form pure-form-stacked pure-g pure-center">
+        <fieldset>
+            <label class="pure-u" for="name">Name / Website</label>
+            <input class="pure-u" type="text" id="name" name="name" size="64">
+            <label class="pure-u" for="login">Login</label>
+            <input class="pure-u" type="text" id="login" name="login" size="64">
+            <label class="pure-u" for="sequence_number">Sequence Number (eg when resetting password do +1)</label>
+            <input class="pure-u" type="number" id="sequence_number" name="sequence_number" value="0" size="64">
+            <label class="pure-u" for="password_length">Maximum Password Length</label>
+            <input class="pure-u" type="number" id="password_length" name="password_length" value="31" size="64">
+            <label class="pure-u" for="password">Your Master Password</label>
+            <input class="pure-u" type="password" id="password" name="password" size="64">
+            <label class="pure-u" for="password_repeat">Your Master Password (repeat)</label>
+            <input class="pure-u" type="password" id="password_repeat" name="password_repeat" size="64">
+            <label class="pure-u">Additional Options</label>
+            <label for="terms" class="pure-checkbox pure-u">
+                <input type="checkbox" id="option_lowercase" name="option_lowercase" value="1" checked> a-z
+            </label>
+            <label for="terms" class="pure-checkbox pure-u">
+                <input type="checkbox" id="option_uppercase" name="option_uppercase" value="1" checked> A-Z
+            </label>
+            <label for="terms" class="pure-checkbox pure-u">
+                <input type="checkbox" id="option_number" name="option_number" value="1" checked> 0-9
+            </label>
+            <label for="terms" class="pure-checkbox pure-u">
+                <input type="checkbox" id="option_special" name="option_special" value="1" checked> Special
+            </label>
+            <label for="terms" class="pure-checkbox pure-u">
+                <input type="checkbox" id="option_space" name="option_space" value="1"> Space
+            </label>
+            <button class="pure-button pure-button-primary pure-u" id="GENERATE" value="GENERATE" onclick="perform_generation()">GENERATE</button>
+            <div>
+                <label class="pure-u" for="output_password">Output Password</label>
+                <input class="pure-u" type="text" id="output_password" name="output_password" size="64" readonly>
+            </div>
+        </fieldset>
+    </div> 
     <script src="sha512.js"></script>
     <script src="mempass.js"></script> 
     <script>
+        var password = document.getElementById("password");
+        password.addEventListener("keydown", function (e) {
+            if (e.keyCode === 13) {
+                perform_generation();
+            }
+        });
+
+        var password_repeat = document.getElementById("password_repeat");
+        password_repeat.addEventListener("keydown", function (e) {
+            if (e.keyCode === 13) {
+                perform_generation();
+            }
+        });
+
         function perform_generation()
         {
             var name = document.getElementById("name");
