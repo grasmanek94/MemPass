@@ -83,7 +83,7 @@ function generatePassword(name, login, sequenceNumber, passwordLen, password, pa
         throw "Master Password cannot be empty";
     }
 
-    var generated_password = "";
+    var generated_password = [];
 
     // Generation routine here
 
@@ -118,8 +118,8 @@ function generatePassword(name, login, sequenceNumber, passwordLen, password, pa
 
     for (var i = 0; i < passwordLen; i++)
     {
-        generated_password += character_set[data[i] % character_set.Length];
+        generated_password.push(character_set[data[i] % character_set.Length]);
     }
 
-    return generated_password;
+    return generated_password.join('');
 }
