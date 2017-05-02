@@ -29,6 +29,17 @@ function toUTF8Array(str) {
     return utf8;
 }
 
+function parseHexString(str) {
+    var result = [];
+    while (str.length >= 8) {
+        result.push(parseInt(str.substring(0, 8), 16));
+
+        str = str.substring(8, str.length);
+    }
+
+    return result;
+}
+
 function generatePassword(name, login, sequenceNumber, passwordLen, password, passwordRepeat, lowercaseSelected, uppercaseSelected, numberSelected, specialSelected, spaceSelected)
 {
     if (passwordLen < 1)
@@ -78,7 +89,7 @@ function generatePassword(name, login, sequenceNumber, passwordLen, password, pa
         throw "Master Passwords do not match";
     }
 
-    if (password.Length < 1)
+    if (password.length < 1)
     {
         throw "Master Password cannot be empty";
     }
@@ -109,16 +120,16 @@ function generatePassword(name, login, sequenceNumber, passwordLen, password, pa
     ];
     var concatenator = [];
 
-    var data = sha512(concatenator.concat(sequence_bytes, config_bytes, name_bytes, zeroes, login_bytes, zeroes, password_bytes).join(''));
+    var data = parseHexString(sha512(concatenator.concat(sequence_bytes, config_bytes, name_bytes, zeroes, login_bytes, zeroes, password_bytes).join('')));
 
-    if (passwordLen > data.Length)
+    if (passwordLen > data.length)
     {
-        passwordLen = data.Length;
+        passwordLen = data.length;
     }
 
     for (var i = 0; i < passwordLen; i++)
     {
-        generated_password.push(character_set[data[i] % character_set.Length]);
+        generated_password.push(character_set[data[i] % character_set.length]);
     }
 
     return generated_password.join('');
