@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MemPass</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <form>
+        Name / Website<br/>
+        <input type="text" id="name" name="name"><br/>
+        Login<br/>
+        <input type="text" id="login" name="login"><br/>
+        Sequence Number (eg when resetting password do +1)<br />
+        <input type="number" id="sequence_number" name="sequence_number" value="0"><br />
+        Maximum Password Length<br />
+        <input type="number" id="password_length" name="password_length" value="31"><br />
+        Your Master Password<br />
+        <input type="password" id="password" name="password"><br />
+        Your Master Password (repeat)<br />
+        <input type="password" id="password_repeat" name="password_repeat"><br />
+        Additional Options<br />
+        <table>
+            <tr>
+                <td><input type="checkbox" id="option_lowercase" name="option_lowercase" value="1" checked> a-z</td>
+                <td><input type="checkbox" id="option_uppercase" name="option_uppercase" value="1" checked> A-Z</td>
+                <td><input type="checkbox" id="option_number" name="option_number" value="1" checked> 0-9</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox" id="option_special" name="option_special" value="1" checked> Special</td>
+                <td><input type="checkbox" id="option_space" name="option_space" value="1"> Space</td>
+                <td></td>
+            </tr>
+        </table>
+    </form> 
+    <button id="GENERATE" value="GENERATE" onclick="perform_generation()">GENERATE</button><br />
+    Output Password<br />
+    <input type="text" id="output_password" name="output_password">
+    <script src="sha512.min.js"></script>
+    <script src="mempass.js"></script> 
+    <script>
+        function perform_generation()
+        {
+            var name = document.getElementById("name");
+            var login = document.getElementById("login");
+            var sequence_number = document.getElementById("sequence_number");
+            var password_length = document.getElementById("password_length");
+            var password = document.getElementById("password");
+            var password_repeat = document.getElementById("password_repeat");
+            var option_lowercase = document.getElementById("option_lowercase");
+            var option_uppercase = document.getElementById("option_uppercase");
+            var option_number = document.getElementById("option_number");
+            var option_special = document.getElementById("option_special");
+            var option_space = document.getElementById("option_space");
+            var output_password = document.getElementById("output_password");
+
+            output_password.value = generatePassword(
+                name.value,
+                login.value,
+                sequence_number.value,
+                password_length.value,
+                password.value,
+                password_repeat.value,
+                !option_lowercase.disabled,
+                !option_uppercase.disabled,
+                !option_number.disabled,
+                !option_special.disabled,
+                !option_space.disabled
+            );
+        }
+    </script>
+</body>
+
+</html> 
