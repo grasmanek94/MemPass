@@ -131,8 +131,10 @@ namespace MemPass
                     (byte)0
                 };
 
+            byte[] combined = Combine(Combine(sequence_bytes, config_bytes, name_bytes), zeroes, Combine(login_bytes, zeroes, password_bytes));
+
             byte[] data = shaM.ComputeHash(
-                Combine(Combine(sequence_bytes, config_bytes, name_bytes), zeroes, Combine(login_bytes, zeroes, password_bytes))
+                combined
             );
 
             if (length > data.Length)

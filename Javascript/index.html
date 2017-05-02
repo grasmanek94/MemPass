@@ -36,7 +36,7 @@
     <button id="GENERATE" value="GENERATE" onclick="perform_generation()">GENERATE</button><br />
     Output Password<br />
     <input type="text" id="output_password" name="output_password">
-    <script src="sha512.min.js"></script>
+    <script src="sha512.js"></script>
     <script src="mempass.js"></script> 
     <script>
         function perform_generation()
@@ -54,19 +54,29 @@
             var option_space = document.getElementById("option_space");
             var output_password = document.getElementById("output_password");
 
-            output_password.value = generatePassword(
-                name.value,
-                login.value,
-                sequence_number.value,
-                password_length.value,
-                password.value,
-                password_repeat.value,
-                option_lowercase.checked,
-                option_uppercase.checked,
-                option_number.checked,
-                option_special.checked,
-                option_space.checked
-            );
+            try
+            {
+                output_password.value = generatePassword(
+                    name.value,
+                    login.value,
+                    sequence_number.value,
+                    password_length.value,
+                    password.value,
+                    password_repeat.value,
+                    option_lowercase.checked,
+                    option_uppercase.checked,
+                    option_number.checked,
+                    option_special.checked,
+                    option_space.checked
+                );
+                password.value = "";
+                password_repeat.value = "";
+                output_password.select();
+            }
+            catch(exception)
+            {
+                alert(exception);
+            }
         }
     </script>
 </body>

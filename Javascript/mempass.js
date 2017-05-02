@@ -29,15 +29,20 @@ function toUTF8Array(str) {
     return utf8;
 }
 
-function parseHexString(str) {
-    var result = [];
-    while (str.length >= 2) {
-        result.push(parseInt(str.substring(0, 2), 16));
+// Convert a hex string to a byte array
+function hexToBytes(hex) {
+    for (var bytes = [], c = 0; c < hex.length; c += 2)
+        bytes.push(parseInt(hex.substr(c, 2), 16));
+    return bytes;
+}
 
-        str = str.substring(2, str.length);
+// Convert a byte array to a hex string
+function bytesToHex(bytes) {
+    for (var hex = [], i = 0; i < bytes.length; i++) {
+        hex.push((bytes[i] >>> 4).toString(16));
+        hex.push((bytes[i] & 0xF).toString(16));
     }
-
-    return result;
+    return hex.join("");
 }
 
 function generatePassword(name, login, sequenceNumber, passwordLen, password, passwordRepeat, lowercaseSelected, uppercaseSelected, numberSelected, specialSelected, spaceSelected)
@@ -119,8 +124,13 @@ function generatePassword(name, login, sequenceNumber, passwordLen, password, pa
         0
     ];
     var concatenator = [];
+    concatenator = concatenator.concat(sequence_bytes, config_bytes, name_bytes, zeroes, login_bytes, zeroes, password_bytes);
 
-    var data = parseHexString(sha512(concatenator.concat(sequence_bytes, config_bytes, name_bytes, zeroes, login_bytes, zeroes, password_bytes).join('')));
+    var shaObj = new jsSHA("SHA-512", "HEX");
+    shaObj.update(bytesToHex(concatenator));
+    var sha_result = shaObj.getHash("HEX");
+
+    var data = hexToBytes(sha_result);
 
     if (passwordLen > data.length)
     {
