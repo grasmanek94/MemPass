@@ -10,34 +10,39 @@
     <!--[if gt IE 8]><!-->
     <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/grids-responsive-min.css">
     <!--<![endif]-->
+    <style>
+        body {
+            background-color: #1f1f1f;
+            color: #cbfffa;
+            width: 100%;
+        }
+
+        .center {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+        }
+
+        .black-text {
+            color: #000;
+        }
+    </style>
 </head>
-<style>
-    body {
-        background-color: #1f1f1f;
-        color: #cbfffa;
-        width: 100%;
-    }
-    .center {
-        margin: auto;
-        width: 50%;
-        padding: 10px;
-    }
-</style>
 <body>
     <div class="center pure-form pure-form-stacked pure-g pure-center">
         <fieldset>
             <label class="pure-u" for="name">Name / Website</label>
-            <input class="pure-u" type="text" id="name" name="name" size="64">
+            <input class="pure-u black-text" type="text" id="name" name="name" size="64">
             <label class="pure-u" for="login">Login</label>
-            <input class="pure-u" type="text" id="login" name="login" size="64">
+            <input class="pure-u black-text" type="text" id="login" name="login" size="64">
             <label class="pure-u" for="sequence_number">Sequence Number (eg when resetting password do +1)</label>
-            <input class="pure-u" type="number" id="sequence_number" name="sequence_number" value="0" size="64">
+            <input class="pure-u black-text" type="number" id="sequence_number" name="sequence_number" value="0" size="64">
             <label class="pure-u" for="password_length">Maximum Password Length</label>
-            <input class="pure-u" type="number" id="password_length" name="password_length" value="31" size="64">
+            <input class="pure-u black-text" type="number" id="password_length" name="password_length" value="31" size="64">
             <label class="pure-u" for="password">Your Master Password</label>
-            <input class="pure-u" type="password" id="password" name="password" size="64">
+            <input class="pure-u black-text" type="password" id="password" name="password" size="64">
             <label class="pure-u" for="password_repeat">Your Master Password (repeat)</label>
-            <input class="pure-u" type="password" id="password_repeat" name="password_repeat" size="64">
+            <input class="pure-u black-text" type="password" id="password_repeat" name="password_repeat" size="64">
             <label class="pure-u">Additional Options</label>
             <label for="terms" class="pure-checkbox pure-u">
                 <input type="checkbox" id="option_lowercase" name="option_lowercase" value="1" checked> a-z
